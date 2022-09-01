@@ -5,4 +5,3 @@ module.exports = {
   setupFiles: ['./tests/globalMocks.js'],
   testEnvironment: 'jsdom',
 };
-
