@@ -13,7 +13,7 @@ class LeaderBoard {
   }
 
   addScore(scores) {
-    [...scores].forEach((s) => this.list.push(new Score(s.name, s.score)));
+    [...scores].forEach((s) => this.list.push(new Score(s.user, s.score)));
     this.display();
   }
 
@@ -47,14 +47,14 @@ class LeaderBoard {
     this.list.forEach((s) => {
       const li = utils.createElement({
         tagName: 'li',
-        textContent: `${s.name}: ${s.score}`,
+        textContent: `${s.user}: ${s.score}`,
       });
 
       leaderboardContainer.appendChild(li);
     });
   }
 
-  async sendScore(name, score) {
+  async sendScore(user, score) {
     const response = await fetch(
       `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameID}/scores`,
       {
@@ -63,14 +63,14 @@ class LeaderBoard {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, score }),
+        body: JSON.stringify({ user, score }),
       },
     );
     const result = await response.json();
 
     if (result.result !== 'Leaderboard score created correctly.') return;
 
-    this.addScore({ name, score });
+    this.addScore({ user, score });
   }
 }
 

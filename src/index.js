@@ -7,12 +7,16 @@ const submitBtn = utils.qs('#submit');
 const nameError = utils.qs('.player_name-error');
 const scoreError = utils.qs('.player_score-error');
 
-const checkInputs = (name, score) => {
-  if (!name.length) {
+const checkInputs = (user, score) => {
+  if (!user.length) {
     nameError.textContent = 'Player name must be at least one alphanumerical character long';
     nameError.classList.remove('hidden');
     return false;
   }
+
+  nameError.textContent = '';
+  nameError.classList.add('hidden');
+
   if (Number.isNaN(score)) {
     scoreError.textContent = 'Player score must be a number';
     scoreError.classList.remove('hidden');
@@ -24,6 +28,9 @@ const checkInputs = (name, score) => {
     return false;
   }
 
+  scoreError.textContent = '';
+  scoreError.classList.add('hidden');
+
   return true;
 };
 
@@ -32,18 +39,13 @@ refreshBtn.addEventListener('click', () => {
 });
 
 submitBtn.addEventListener('click', () => {
-  const name = utils.qs('#player_name').value.trim();
+  const user = utils.qs('#player_name').value.trim();
   const score = parseInt(utils.qs('#player_score').value.trim(), 10);
 
   // Some checks before sending
-  if (!checkInputs(name, score)) return;
+  if (!checkInputs(user, score)) return;
 
-  nameError.textContent = '';
-  nameError.classList.add('hidden');
-  scoreError.textContent = '';
-  scoreError.classList.add('hidden');
-
-  leaderboard.addScore({ name, score });
+  leaderboard.sendScore({ user, score });
 });
 
 refreshBtn.addEventListener('click', () => {

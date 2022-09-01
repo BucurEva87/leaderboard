@@ -20,6 +20,7 @@
   --color-white: #fff;
   --color-gray: #ddd;
   --color-black: #000;
+  --color-red: #f00;
 }
 
 html {
@@ -119,6 +120,7 @@ button:active {
 input + p {
   margin-top: -1.4rem;
   margin-left: 1rem;
+  color: var(--color-red);
 }
 
 p.hidden {
