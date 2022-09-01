@@ -126,7 +126,37 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _modules_utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/utils.js */ \"./src/modules/utils.js\");\n\n\n\n\n//# sourceURL=webpack://boilerplate/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _modules_dummyData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/dummyData.js */ \"./src/modules/dummyData.js\");\n/* harmony import */ var _modules_Leaderboard_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Leaderboard.js */ \"./src/modules/Leaderboard.js\");\n\n// import utils from './modules/utils.js';\n\n\n\n_modules_Leaderboard_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].addScore(_modules_dummyData_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n\n//# sourceURL=webpack://boilerplate/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Leaderboard.js":
+/*!************************************!*\
+  !*** ./src/modules/Leaderboard.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ \"./src/modules/utils.js\");\n/* harmony import */ var _Score_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Score.js */ \"./src/modules/Score.js\");\n\n\n\nconst leaderboardContainer = _utils_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].qs('#leaderboard');\n\nclass LeaderBoard {\n  list = [];\n\n  constructor(scores) {\n    scores.forEach((s) => this.addScore(s));\n  }\n\n  addScore(scores) {\n    [...scores].forEach((s) => this.list.push(new _Score_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](s.name, s.score)));\n    this.display();\n  }\n\n  display() {\n    _utils_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].qsa('li', leaderboardContainer).forEach((li) => li.remove());\n\n    this.list.forEach((s) => {\n      const li = _utils_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createElement({\n        tagName: 'li',\n        textContent: `${s.name}: ${s.score}`,\n      });\n\n      leaderboardContainer.appendChild(li);\n    });\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new LeaderBoard());\n\n\n//# sourceURL=webpack://boilerplate/./src/modules/Leaderboard.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Score.js":
+/*!******************************!*\
+  !*** ./src/modules/Score.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Score)\n/* harmony export */ });\nclass Score {\n  constructor(name, score) {\n    this.name = name;\n    this.score = score;\n  }\n}\n\n\n//# sourceURL=webpack://boilerplate/./src/modules/Score.js?");
+
+/***/ }),
+
+/***/ "./src/modules/dummyData.js":
+/*!**********************************!*\
+  !*** ./src/modules/dummyData.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([\n  {\n    name: 'Dummy name',\n    score: 100,\n  },\n  {\n    name: 'Dummy name',\n    score: 20,\n  },\n  {\n    name: 'Dummy name',\n    score: 50,\n  },\n  {\n    name: 'Dummy name',\n    score: 78,\n  },\n  {\n    name: 'Dummy name',\n    score: 125,\n  },\n  {\n    name: 'Dummy name',\n    score: 77,\n  },\n  {\n    name: 'Dummy name',\n    score: 42,\n  },\n]);\n\n\n//# sourceURL=webpack://boilerplate/./src/modules/dummyData.js?");
 
 /***/ }),
 
