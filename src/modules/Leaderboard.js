@@ -13,7 +13,12 @@ class LeaderBoard {
   }
 
   addScore(scores) {
-    [...scores].forEach((s) => this.list.push(new Score(s.user, s.score)));
+    if (Array.isArray(scores) && !scores.length) return;
+    if (Array.isArray(scores)) {
+      scores.forEach((s) => this.list.push(new Score(s.user, s.score)));
+    } else {
+      this.list.push(new Score(scores.user, scores.score));
+    }
     this.display();
   }
 
@@ -42,7 +47,7 @@ class LeaderBoard {
       return;
     }
 
-    utils.qs('li', leaderboardContainer).remove();
+    utils.qsa('li', leaderboardContainer).forEach((li) => li.remove());
 
     this.list.forEach((s) => {
       const li = utils.createElement({

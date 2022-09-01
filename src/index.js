@@ -45,7 +45,7 @@ submitBtn.addEventListener('click', () => {
   // Some checks before sending
   if (!checkInputs(user, score)) return;
 
-  leaderboard.sendScore({ user, score });
+  leaderboard.sendScore(user, score);
 });
 
 refreshBtn.addEventListener('click', () => {
