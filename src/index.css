@@ -110,3 +110,8 @@ button {
   font-family: var(--font-springtime);
   font-size: 1.4rem;
 }
+
+button:active {
+  transform: translateX(0.2rem) translateY(0.2rem);
+  box-shadow: none;
+}
