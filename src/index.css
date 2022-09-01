@@ -20,6 +20,7 @@
   --color-white: #fff;
   --color-gray: #ddd;
   --color-black: #000;
+  --color-red: #f00;
 }
 
 html {
@@ -109,4 +110,19 @@ input,
 button {
   font-family: var(--font-springtime);
   font-size: 1.4rem;
+}
+
+button:active {
+  transform: translateX(0.2rem) translateY(0.2rem);
+  box-shadow: none;
+}
+
+input + p {
+  margin-top: -1.4rem;
+  margin-left: 1rem;
+  color: var(--color-red);
+}
+
+p.hidden {
+  display: none;
 }

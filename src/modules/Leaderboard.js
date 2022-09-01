@@ -6,26 +6,76 @@ const leaderboardContainer = utils.qs('#leaderboard');
 class LeaderBoard {
   list = [];
 
-  constructor(scores) {
-    scores?.forEach((s) => this.addScore(s));
+  gameID = 'hjG7jKjSpKXnTC0qQbyf';
+
+  constructor() {
+    this.getScores();
   }
 
   addScore(scores) {
-    [...scores].forEach((s) => this.list.push(new Score(s.name, s.score)));
+    if (Array.isArray(scores) && !scores.length) return;
+    if (Array.isArray(scores)) {
+      scores.forEach((s) => this.list.push(new Score(s.user, s.score)));
+    } else {
+      this.list.push(new Score(scores.user, scores.score));
+    }
     this.display();
   }
 
+  async getScores() {
+    utils.qsa('li', leaderboardContainer).forEach((li) => li.remove());
+
+    const li = utils.createElement({
+      tagName: 'li',
+      textContent: 'Loading scores (please wait)...',
+    });
+
+    leaderboardContainer.appendChild(li);
+
+    const response = await fetch(
+      `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameID}/scores`,
+    );
+    const scores = await response.json();
+
+    this.list.length = 0;
+    this.addScore(scores.result);
+  }
+
   display() {
+    if (!this.list.length) {
+      utils.qs('li', leaderboardContainer).textContent = 'No scores available at this moment';
+      return;
+    }
+
     utils.qsa('li', leaderboardContainer).forEach((li) => li.remove());
 
     this.list.forEach((s) => {
       const li = utils.createElement({
         tagName: 'li',
-        textContent: `${s.name}: ${s.score}`,
+        textContent: `${s.user}: ${s.score}`,
       });
 
       leaderboardContainer.appendChild(li);
     });
+  }
+
+  async sendScore(user, score) {
+    const response = await fetch(
+      `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameID}/scores`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user, score }),
+      },
+    );
+    const result = await response.json();
+
+    if (result.result !== 'Leaderboard score created correctly.') return;
+
+    this.addScore({ user, score });
   }
 }
 
