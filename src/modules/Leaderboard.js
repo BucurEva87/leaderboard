@@ -6,7 +6,7 @@ const leaderboardContainer = utils.qs('#leaderboard');
 class LeaderBoard {
   list = [];
 
-  gameID = 'Y5moUnjSSbKIPcm9jZXj';
+  gameID = 'hjG7jKjSpKXnTC0qQbyf';
 
   constructor() {
     this.getScores();

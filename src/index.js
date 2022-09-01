@@ -45,6 +45,9 @@ submitBtn.addEventListener('click', () => {
   // Some checks before sending
   if (!checkInputs(user, score)) return;
 
+  utils.qs('#player_name').value = '';
+  utils.qs('#player_score').value = '';
+
   leaderboard.sendScore(user, score);
 });
 
