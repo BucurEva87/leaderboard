@@ -35,7 +35,7 @@ const checkInputs = (user, score) => {
 };
 
 refreshBtn.addEventListener('click', () => {
-  'something';
+  leaderboard.getScores();
 });
 
 submitBtn.addEventListener('click', () => {
