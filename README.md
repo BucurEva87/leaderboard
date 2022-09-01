@@ -18,7 +18,7 @@
 
 ## Live Preview
 
-<!-- ![Live Preview](https://i.postimg.cc/PqMCTCfp/Screenshot-from-2022-08-18-15-30-16.png) -->
+![Live Preview](https://i.postimg.cc/ZnCGSNzb/leaderboard.png)
 
 ## Authors
 
