@@ -18,11 +18,21 @@ class LeaderBoard {
   }
 
   async getScores() {
+    utils.qsa('li', leaderboardContainer).forEach((li) => li.remove());
+
+    const li = utils.createElement({
+      tagName: 'li',
+      textContent: 'Loading scores (please wait)...',
+    });
+
+    leaderboardContainer.appendChild(li);
+
     const response = await fetch(
       `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameID}/scores`,
     );
     const scores = await response.json();
 
+    this.list.length = 0;
     this.addScore(scores.result);
   }
 
@@ -32,7 +42,7 @@ class LeaderBoard {
       return;
     }
 
-    utils.qsa('li', leaderboardContainer).forEach((li) => li.remove());
+    utils.qs('li', leaderboardContainer).remove();
 
     this.list.forEach((s) => {
       const li = utils.createElement({

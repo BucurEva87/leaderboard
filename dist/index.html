@@ -15,13 +15,17 @@
       <section>
         <h2>Recent scores</h2>
         <button type="button" id="refresh">Refresh</button>
-        <ul id="leaderboard"></ul>
+        <ul id="leaderboard">
+          <li>Loading scores (please wait)...</li>
+        </ul>
       </section>
 
       <section>
         <h2>Add your score</h2>
         <input type="text" id="player_name" placeholder="Your name" required />
+        <p class="player_name-error hidden">Player name must not be null</p>
         <input type="number" id="player_score" placeholder="Your score" required />
+        <p class="player_score-error hidden">Player score must be a number</p>
         <button type="button" id="submit">Submit</button>
       </section>
     </div>

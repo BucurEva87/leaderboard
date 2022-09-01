@@ -115,3 +115,12 @@ button:active {
   transform: translateX(0.2rem) translateY(0.2rem);
   box-shadow: none;
 }
+
+input + p {
+  margin-top: -1.4rem;
+  margin-left: 1rem;
+}
+
+p.hidden {
+  display: none;
+}

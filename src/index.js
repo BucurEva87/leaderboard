@@ -8,14 +8,11 @@ const nameError = utils.qs('.player_name-error');
 const scoreError = utils.qs('.player_score-error');
 
 const checkInputs = (name, score) => {
-  if (!name.value.trim().length) {
+  if (!name.length) {
     nameError.textContent = 'Player name must be at least one alphanumerical character long';
     nameError.classList.remove('hidden');
     return false;
   }
-
-  score = parseInt(score.trim(), 10);
-
   if (Number.isNaN(score)) {
     scoreError.textContent = 'Player score must be a number';
     scoreError.classList.remove('hidden');
@@ -35,19 +32,20 @@ refreshBtn.addEventListener('click', () => {
 });
 
 submitBtn.addEventListener('click', () => {
-  const name = utils.qs('#player_name').value;
-  const score = utils.qs('#player_score').value;
+  const name = utils.qs('#player_name').value.trim();
+  const score = parseInt(utils.qs('#player_score').value.trim(), 10);
 
   // Some checks before sending
-  if (!checkInputs()) return;
+  if (!checkInputs(name, score)) return;
 
   nameError.textContent = '';
   nameError.classList.add('hidden');
   scoreError.textContent = '';
   scoreError.classList.add('hidden');
 
-  leaderboard.addScore({
-    name: name.trim(),
-    score: +score,
-  });
+  leaderboard.addScore({ name, score });
+});
+
+refreshBtn.addEventListener('click', () => {
+  leaderboard.getScores();
 });
