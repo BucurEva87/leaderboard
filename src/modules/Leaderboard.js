@@ -7,7 +7,7 @@ class LeaderBoard {
   list = [];
 
   constructor(scores) {
-    scores.forEach((s) => this.addScore(s));
+    scores?.forEach((s) => this.addScore(s));
   }
 
   addScore(scores) {
