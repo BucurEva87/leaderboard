@@ -6,13 +6,26 @@ const leaderboardContainer = utils.qs('#leaderboard');
 class LeaderBoard {
   list = [];
 
-  constructor(scores) {
-    scores?.forEach((s) => this.addScore(s));
+  gameID = 'Y5moUnjSSbKIPcm9jZXj';
+
+  constructor() {
+    this.getScores();
   }
 
   addScore(scores) {
     [...scores].forEach((s) => this.list.push(new Score(s.name, s.score)));
     this.display();
+  }
+
+  async getScores() {
+    const response = await fetch(
+      `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameID}/scores`,
+    );
+    const scores = await response.json();
+
+    if (!scores.length) return;
+
+    scores.forEach((s) => this.addScore(s));
   }
 
   display() {
