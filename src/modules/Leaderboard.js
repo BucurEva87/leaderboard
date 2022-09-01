@@ -23,12 +23,15 @@ class LeaderBoard {
     );
     const scores = await response.json();
 
-    if (!scores.length) return;
-
-    scores.forEach((s) => this.addScore(s));
+    this.addScore(scores.result);
   }
 
   display() {
+    if (!this.list.length) {
+      utils.qs('li', leaderboardContainer).textContent = 'No scores available at this moment';
+      return;
+    }
+
     utils.qsa('li', leaderboardContainer).forEach((li) => li.remove());
 
     this.list.forEach((s) => {
@@ -39,6 +42,25 @@ class LeaderBoard {
 
       leaderboardContainer.appendChild(li);
     });
+  }
+
+  async sendScore(name, score) {
+    const response = await fetch(
+      `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${this.gameID}/scores`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, score }),
+      },
+    );
+    const result = await response.json();
+
+    if (result.result !== 'Leaderboard score created correctly.') return;
+
+    this.addScore({ name, score });
   }
 }
 
