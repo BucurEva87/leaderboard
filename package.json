@@ -1,14 +1,17 @@
 {
   "name": "boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
     "webhint": "npx hint .",
     "stylelint": "npx stylelint **/*.{css,scss}",
     "eslint": "npx eslint .",
-    "watch": "jest --watch *.js"
+    "watch": "jest --watch *.js",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "webpack --mode development --config webpack.config.js --watch"
   },
   "author": "Bucur Eva-Lavinia",
   "license": "MIT",
@@ -27,13 +30,23 @@
     "@babel/preset-env": "^7.18.10",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^28.1.3",
+    "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.26.0",
     "hint": "^7.1.1",
+    "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BucurEva87/leaderboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BucurEva87/leaderboard/issues"
+  },
+  "homepage": "https://github.com/BucurEva87/leaderboard#readme"
 }

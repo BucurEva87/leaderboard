@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'springtime_romanceregular';
+  src:
+    url('./assets/fonts/springtimeromance-lgqqx-webfont.woff2') format('woff2'),
+    url('./assets/fonts/springtimeromance-lgqqx-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -7,9 +16,97 @@
 }
 
 :root {
-
+  --font-springtime: 'springtime_romanceregular';
+  --color-white: #fff;
+  --color-gray: #ddd;
+  --color-black: #000;
 }
 
 html {
-  font-size: 10px;
+  font-size: 14px;
+}
+
+body {
+  margin: 2rem auto 0;
+  max-width: 102.4rem;
+  font-family: var(--font-springtime);
+  letter-spacing: 0.1rem;
+}
+
+header h1 {
+  font-size: 3.6rem;
+  margin-left: 2rem;
+  margin-bottom: 5rem;
+}
+
+div {
+  display: flex;
+  justify-content: space-around;
+}
+
+section h2 {
+  font-size: 2.4rem;
+}
+
+section:first-child {
+  width: 40%;
+}
+
+section:first-child h2 {
+  display: inline-block;
+  margin-bottom: 1.6rem;
+}
+
+#leaderboard {
+  list-style-type: none;
+  width: 100%;
+  border: 0.3rem solid var(--color-black);
+}
+
+#leaderboard li {
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+#leaderboard li:nth-child(odd) {
+  background-color: var(--color-white);
+}
+
+#leaderboard li:nth-child(even) {
+  background-color: var(--color-gray);
+}
+
+section:last-child {
+  width: 35%;
+}
+
+section:last-child > * {
+  display: block;
+  margin-bottom: 1.6rem;
+}
+
+input {
+  outline: none;
+  border: 0.2rem solid var(--color-black);
+  padding: 0.5rem;
+  width: 100%;
+}
+
+#refresh,
+#submit {
+  float: right;
+}
+
+button {
+  border: 0.2rem solid var(--color-black);
+  background-color: var(--color-white);
+  padding: 0.3rem;
+  box-shadow: 0.2rem 0.2rem var(--color-black);
+}
+
+input,
+button {
+  font-family: var(--font-springtime);
+  font-size: 1.4rem;
 }
